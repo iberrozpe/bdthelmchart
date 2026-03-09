@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: {{.Values.label}}
+  name: {{.Values.deployment.name}} 
+spec:
+  template:
+     metadata:
+        labels:
+          app: {{.Values.label}}
+     spec:     
+      containers:
+        - image: {{.Values.deployment.bdtImage}}
+          imagePullPolicy: IfNotPresent
+          name: {{.Values.deployment.bdtContainername}}
+          
+          env:
+            - name: KMS_HOST 
+              value: {{.Values.env.kmsHost}}      
+            - name: REG_TOKEN
+              value: {{.Values.env.regToken}}
+            - name: KMS_PORT
+              value: {{.Values.env.kmsPort | quote }}
+            #- name: DB_CERT_VALUE   # Use this variable to make a SSL connection with the database.
+              #value: {{.Values.env.dbCertValue}}      
+            #- name: JDBC_DRIVER_DOWNLOAD_URL # Use this variable if you want to specify the JDBC Driver URLS. 
+              #value: {{.Values.env.jdbcDriverDownloadUrl}}              
+  replicas: {{.Values.deployment.replicas}}
+  selector:
+      matchLabels:
+        app: {{.Values.label}}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels: 
+    app: {{.Values.label}}
+  name: {{.Values.service.name}}
+spec:
+  selector:
+    app: {{.Values.label}}
+  type: {{.Values.service.type}}
+  ports:
+    - port: {{.Values.service.port}}
+      nodePort: {{.Values.service.nodePort}}
+
+---

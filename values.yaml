@@ -1,0 +1,20 @@
+label: bdt
+
+deployment:
+  name: bdt-deployment
+  bdtContainername: bdt-container
+  bdtImage: thalesciphertrust/ciphertrust-batch-data-transformation:latest
+  replicas: 1   
+ 
+env:
+  kmsHost: "<KMS host IP>"
+  regToken: "<Registration token of BDT application>"
+  kmsPort: "443"
+  #jdbcDriverDownloadUrl: "For example, for Oracle, you can use the following URL: "ORACLE=https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc17/23.7.0.25.01/ojdbc17-23.7.0.25.01.jar". Refer to documentation for more details. 
+  #dbCertValue: DB_CERT_VALUE="-----BEGIN CERTIFICATE.....END CERTIFICATE" Comma separated certificate values in .pem format required to make a secure JDBC connection (SSL) with databases.
+
+service:
+  name: bdt-service
+  type: NodePort
+  nodePort: 32082 # This value can be any number between 30000-32767
+  port: 8080
