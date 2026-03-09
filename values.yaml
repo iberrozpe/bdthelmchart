@@ -7,8 +7,8 @@ deployment:
   replicas: 1   
  
 env:
-  kmsHost: "<KMS host IP>"
-  regToken: "<Registration token of BDT application>"
+  kmsHost: "cm.sfnt.me"
+  regToken: "eezPqcsHyZxhx11ry2L7fdpMHRFnMLdFSS0UPfFlpwN4sdP8sRLEDk9URI4ubcMh"
   kmsPort: "443"
   #jdbcDriverDownloadUrl: "For example, for Oracle, you can use the following URL: "ORACLE=https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc17/23.7.0.25.01/ojdbc17-23.7.0.25.01.jar". Refer to documentation for more details. 
   #dbCertValue: DB_CERT_VALUE="-----BEGIN CERTIFICATE.....END CERTIFICATE" Comma separated certificate values in .pem format required to make a secure JDBC connection (SSL) with databases.
